@@ -1,6 +1,6 @@
 package cabinvoicegenerator;
 
-public class InvoiceSummary 
+public class InvoiceSummary
 {
 
     private final double totalFare;
