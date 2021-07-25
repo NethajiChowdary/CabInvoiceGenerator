@@ -1,47 +1,45 @@
 package cabinvoicegenerator;
 
-public class InvoiceGenerator
+public class InvoiceGenerator 
 {
+    
+    private static final double MINIMUM_COST_PER_KILOMETER = 10;
+    private static final int COST_PER_TIME = 1;
+    private static final double MINIMUM_FARE = 5;
 
-    public static void main(String[] args)
+    public static void main(String[] args) 
     {
         System.out.println("Welcome to cab invoice generator");
     }
 
-    private final double MINIMUM_COST_PER_KILOMETER = 10;
-    private final int COST_PER_TIME= 1;
-    private final double MINIMUM_FARE = 5;
-    private RideRepository rideRepository;
+    RideRepository rideRepository = new RideRepository();
 
-    public InvoiceGenerator()
+    public void setRideRepository(RideRepository rideRepository)
     {
-        this.rideRepository = new RideRepository();
+        this.rideRepository = rideRepository;
     }
 
-    public double calculateFare(double distance,int time)
+    public double calculateFare(double distance,int time) 
     {
         double totalFare= distance*MINIMUM_COST_PER_KILOMETER+time*COST_PER_TIME;
         return Math.max(totalFare, MINIMUM_FARE);
     }
 
-
-    public InvoiceSummary calculateFare(Ride[] rides) 
+    public InvoiceSummary getTotalFare(Ride[] rides) 
     {
-        double totalFare=0;
+        double totalFare = 0;
         for(Ride ride:rides)
-        {
-            totalFare+=this.calculateFare(ride.distance, ride.time);
-        }
-        return new InvoiceSummary(rides.length,totalFare);
+            totalFare += ride.cabRide.calculateCostOfRide(ride);
+        return new InvoiceSummary(rides.length, totalFare);
     }
 
-    public void addRides(String userId, Ride[] rides)
+    public void addRides(String userId, Ride[] rides) 
     {
         rideRepository.addRides(userId,rides);
     }
 
     public InvoiceSummary getInvoiceSummary(String userId) 
     {
-        return this.calculateFare(rideRepository.getRide(userId));
+        return this.getTotalFare(rideRepository.getRide(userId));
     }
 }

@@ -1,6 +1,6 @@
 package cabinvoicegenerator;
 
-public class InvoiceSummary
+public class InvoiceSummary 
 {
 
     private final double totalFare;
@@ -15,7 +15,7 @@ public class InvoiceSummary
     }
 
     @Override
-    public boolean equals(Object object) 
+    public boolean equals(Object object)
     {
         if (this == object)
             return true;

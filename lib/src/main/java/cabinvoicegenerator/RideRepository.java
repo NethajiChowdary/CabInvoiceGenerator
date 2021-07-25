@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RideRepository 
+public class RideRepository
 {
     Map<String, ArrayList<Ride>> userRides;
 
-    public RideRepository() 
+    public RideRepository()
     {
         this.userRides=new HashMap<>();
     }
