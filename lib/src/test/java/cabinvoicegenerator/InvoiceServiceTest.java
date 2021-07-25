@@ -41,7 +41,7 @@ public class InvoiceServiceTest
     @Test
     public void givenUserId_ShouldReturnInvoiceSummary()
     {
-        String userId="sayali123";
+        String userId="nethaji55";
         InvoiceGenerator generator = new InvoiceGenerator();
         Ride[] rides = { new Ride(2.0, 5),
                 new Ride(0.1, 1)
